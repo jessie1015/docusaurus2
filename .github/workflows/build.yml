@@ -1,0 +1,38 @@
+name: Generate PDF
+
+on:
+  push:
+    branches:
+      - master  # 或您的默认分支名称
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Build Docusaurus site
+        run: |
+          npm run build
+
+      - name: Generate PDF
+        run: |
+          # 使用 wkhtmltopdf 或其他工具生成 PDF 文件
+          "C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe" http://localhost:3000/nx101-doc/ file.pdf
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: generated-pdf
+          path: C:\Users\6781\Desktop\jessie\nx101-doc/file.pdf
