@@ -29,7 +29,7 @@ jobs:
       - name: Generate PDF
         run: |
           # 使用 wkhtmltopdf 或其他工具生成 PDF 文件
-          "C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe" http://localhost:3000/nx101-doc/ file.pdf
+          "C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe" https://localhost:3000/nx101-doc/ file.pdf
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v2
